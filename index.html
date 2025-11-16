@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pallas Magániskola Bt. – Nyelvtanfolyamok</title>
+  <meta name="description" content="Pallas Magániskola Betéti Társaság – minőségi angol, német és egyéb nyelvtanfolyamok kezdőtől a felsőfokig. Online és személyes képzések.">
+  <style>
+    :root {
+      --primary: #1455c9;
+      --primary-light: #e5edff;
+      --accent: #f9b600;
+      --dark: #1b1f3b;
+      --text: #202124;
+      --muted: #6b7280;
+      --bg: #f5f5f7;
+      --radius-lg: 1.25rem;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top left, #e5edff, #f9fafb);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      background: rgba(249, 250, 251, 0.8);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.85rem 0;
+      gap: 1.5rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .logo-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      background: conic-gradient(
+        from 140deg,
+        #2563eb,
+        #22c55e,
+        #f97316,
+        #2563eb
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 0.9rem;
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.35);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      position: relative;
+      padding-bottom: 0.2rem;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #2563eb, #f97316);
+      transition: width 0.2s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      border-radius: 999px;
+      padding: 0.6rem 1.4rem;
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: transform 0.15s ease, box-shadow 0.15s ease,
+        background 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #2563eb, #1455c9);
+      color: #fff;
+      box-shadow: 0 16px 40px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 22px 50px rgba(37, 99, 235, 0.45);
+    }
+
+    .btn-outline {
+      background: white;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: var(--dark);
+    }
+
+    .btn-outline:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.1);
+    }
+
+    main {
+      padding-bottom: 4rem;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 3rem 0 2.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .hero {
+        padding: 4rem 0 3.5rem;
+      }
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr);
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    @media (min-width: 900px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      }
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.2rem 0.7rem 0.2rem 0.25rem;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.06);
+      color: #2563eb;
+      font-size: 0.8rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .badge-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.2);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.1rem, 3vw + 1.2rem, 2.9rem);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--dark);
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 span.highlight {
+      background: linear-gradient(120deg, #2563eb, #f97316);
+      -webkit-background-clip: text;
+      color: transparent;
+      font-weight: 800;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 34rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      align-items: center;
+      margin-bottom: 1.1rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.4rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .hero-meta-item strong {
+      display: block;
+      color: var(--dark);
+      font-size: 0.95rem;
+    }
+
+    .hero-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(18px);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      padding: 1.6rem 1.5rem;
+      border: 1px solid rgba(148, 163, 184, 0.22);
+    }
+
+    .hero-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .hero-card-title {
+      font-weight: 600;
+      font-size: 0.98rem;
+      color: var(--dark);
+    }
+
+    .hero-card-tag {
+      font-size: 0.78rem;
+      padding: 0.15rem 0.6rem;
+      border-radius: 999px;
+      background: var(--primary-light);
+      color: #2563eb;
+    }
+
+    .progress-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      margin-bottom: 0.3rem;
+      color: var(--muted);
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 7px;
+      border-radius: 999px;
+      background: #e5e7eb;
+      overflow: hidden;
+      margin-bottom: 0.8rem;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 78%;
+      background: linear-gradient(90deg, #22c55e, #2563eb);
+    }
+
+    .levels-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      font-size: 0.78rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .pill {
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      background: #f3f4f6;
+    }
+
+    .pill.active {
+      background: #2563eb;
+      color: #fff;
+    }
+
+    .hero-card-footer {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* Sections */
+    section {
+      padding: 2.5rem 0 0;
+    }
+
+    section h2 {
+      font-size: 1.6rem;
+      margin-bottom: 0.3rem;
+      color: var(--dark);
+      letter-spacing: -0.01em;
+    }
+
+    .section-subtitle {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 1.7rem;
+    }
+
+    /* Courses */
+    .courses-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1.4rem;
+    }
+
+    @media (min-width: 700px) {
+      .courses-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .course-card {
+      background: #ffffff;
+      border-radius: 1.1rem;
+      padding: 1.2rem 1.15rem;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      min-height: 190px;
+    }
+
+    .course-level {
+      font-size: 0.78rem;
+      padding: 0.16rem 0.55rem;
+      border-radius: 999px;
+      background: #eff6ff;
+      color: #2563eb;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .course-level span {
+      font-size: 0.75rem;
+      opacity: 0.9;
+    }
+
+    .course-card h3 {
+      font-size: 1.05rem;
+      color: var(--dark);
+    }
+
+    .course-meta {
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+
+    .course-meta strong {
+      color: var(--dark);
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.3rem;
+    }
+
+    .chip {
+      font-size: 0.75rem;
+      padding: 0.18rem 0.5rem;
+      border-radius: 999px;
+      background: #f3f4f6;
+      color: #4b5563;
+    }
+
+    /* Why us */
+    .why-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1.4rem;
+    }
+
+    @media (min-width: 900px) {
+      .why-grid {
+        grid-template-columns: 1.2fr 1.1fr;
+      }
+    }
+
+    .why-card {
+      background: #ffffff;
+      border-radius: 1.1rem;
+      padding: 1.1rem 1.1rem;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .why-list {
+      list-style: none;
+      display: grid;
+      gap: 0.6rem;
+      font-size: 0.9rem;
+    }
+
+    .why-item {
+      display: flex;
+      gap: 0.55rem;
+      align-items: flex-start;
+    }
+
+    .why-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: #dcfce7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+    }
+
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.3rem;
+      margin-top: 0.9rem;
+      font-size: 0.9rem;
+    }
+
+    .stat-number {
+      display: block;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .contact-info {
+      font-size: 0.92rem;
+      color: var(--muted);
+      background: #ffffff;
+      border-radius: 1.1rem;
+      padding: 1.25rem 1.2rem 1.4rem;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+    }
+
+    .contact-info strong {
+      color: var(--dark);
+    }
+
+    .contact-list {
+      list-style: none;
+      margin-top: 0.6rem;
+      display: grid;
+      gap: 0.4rem;
+    }
+
+    .contact-list li {
+      display: flex;
+      gap: 0.5rem;
+      align-items: flex-start;
+    }
+
+    .contact-badge {
+      font-size: 0.78rem;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      background: #eff6ff;
+      color: #2563eb;
+      margin-top: 0.8rem;
+      display: inline-flex;
+    }
+
+    footer {
+      padding: 2.5rem 0 2.2rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .footer-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(148, 163, 184, 0.4);
+      padding-top: 1.3rem;
+      margin-top: 1.2rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-links a {
+      text-decoration: underline;
+      text-decoration-style: dotted;
+    }
+
+    .text-accent {
+      color: #f97316;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav class="nav">
+        <div class="logo">
+          <div class="logo-mark">P</div>
+          <div>
+            Pallas Magániskola Bt.
+          </div>
+        </div>
+        <div class="nav-links">
+          <a href="#tanfolyamok">Tanfolyamok</a>
+          <a href="#miert-mi">Miért mi?</a>
+          <a href="#kapcsolat">Kapcsolat</a>
+          <button class="btn btn-primary" onclick="document.getElementById('kapcsolat').scrollIntoView({behavior:'smooth'});">
+            Jelentkezem
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <div class="badge">
+              <div class="badge-dot"></div>
+              Nyelvtanulás személyre szabva – online és személyesen
+            </div>
+            <h1>
+              Nyelvtanfolyamok a
+              <span class="highlight">Pallas Magániskolánál</span> –
+              lépésről lépésre a magabiztos kommunikáció felé.
+            </h1>
+            <p class="hero-subtitle">
+              Minőségi angol, német és egyéb nyelvtanfolyamok kezdőtől felsőfokig.
+              Kiscsoportos órák, rugalmas időpontok, vizsgafelkészítés (B1–C1).
+            </p>
+            <div class="hero-cta">
+              <button class="btn btn-primary" onclick="document.getElementById('kapcsolat').scrollIntoView({behavior:'smooth'});">
+                Kapcsolatfelvétel
+              </button>
+              <a href="#tanfolyamok" class="btn btn-outline">
+                Tanfolyamok megtekintése
+              </a>
+            </div>
+            <div class="hero-meta">
+              <div class="hero-meta-item">
+                <strong>20+ év tapasztalat</strong>
+                Nyelvtanárok, akik a való életre készítenek fel.
+              </div>
+              <div class="hero-meta-item">
+                <strong>Online &amp; jelenléti</strong>
+                Tanulj otthonról vagy tanteremben, ahogy neked kényelmes.
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="hero-card">
+              <div class="hero-card-header">
+                <div class="hero-card-title">
+                  Következő induló csoport: <br /><strong>Angol B1 kommunikációs kurzus</strong>
+                </div>
+                <span class="hero-card-tag">2025. január</span>
+              </div>
+
+              <div class="progress-row">
+                <span>Beiratkozók száma</span>
+                <span>12 / 16 fő</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill"></div>
+              </div>
+
+              <div class="levels-pills">
+                <span class="pill active">B1 – küszöbszint</span>
+                <span class="pill">Heti 2×90 perc</span>
+                <span class="pill">Online csoport</span>
+              </div>
+
+              <p class="hero-card-footer">
+                Ideális azoknak, akik már rendelkeznek alapokkal, és
+                folyékonyabban szeretnének beszélni hétköznapi helyzetekben,
+                munkában vagy utazás során.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COURSES -->
+    <section id="tanfolyamok">
+      <div class="container">
+        <h2>Nyelvtanfolyamok</h2>
+        <p class="section-subtitle">
+          A Pallas Magániskola Betéti Társaság kezdőtől felsőfokig szervez
+          nyelvtanfolyamokat – magánszemélyeknek és cégeknek egyaránt.
+        </p>
+
+        <div class="courses-grid">
+          <!-- Course 1 -->
+          <article class="course-card">
+            <div class="course-level">
+              Angol nyelv <span>B1–B2</span>
+            </div>
+            <h3>Általános és kommunikációs angol</h3>
+            <p class="course-meta">
+              <strong>Formátum:</strong> kiscsoportos &amp; online<br />
+              <strong>Időpontok:</strong> délelőtti és esti csoportok
+            </p>
+            <div class="chip-row">
+              <span class="chip">Kommunikáció fókusz</span>
+              <span class="chip">Magabiztos beszéd</span>
+              <span class="chip">Mindennapi szituációk</span>
+            </div>
+          </article>
+
+          <!-- Course 2 -->
+          <article class="course-card">
+            <div class="course-level">
+              Német nyelv <span>A2–B2</span>
+            </div>
+            <h3>Német nyelvtanfolyam munkához</h3>
+            <p class="course-meta">
+              <strong>Formátum:</strong> online &amp; jelenléti<br />
+              <strong>Ajánlott:</strong> egészségügy, vendéglátás, szakmunkák
+            </p>
+            <div class="chip-row">
+              <span class="chip">Állásinterjú-felkészítés</span>
+              <span class="chip">Szakmai szókincs</span>
+              <span class="chip">Szituációs gyakorlatok</span>
+            </div>
+          </article>
+
+          <!-- Course 3 -->
+          <article class="course-card">
+            <div class="course-level">
+              Vizsgafelkészítés <span>B1–C1</span>
+            </div>
+            <h3>Nyelvvizsga &amp; érettségi tréning</h3>
+            <p class="course-meta">
+              <strong>Nyelvek:</strong> angol, német<br />
+              <strong>Cél:</strong> B1, B2, C1 nyelvvizsga, közép- és emelt szintű érettségi
+            </p>
+            <div class="chip-row">
+              <span class="chip">Próbavizsgák</span>
+              <span class="chip">Egyéni visszajelzés</span>
+              <span class="chip">Stratégia &amp; időgazdálkodás</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY US -->
+    <section id="miert-mi">
+      <div class="container">
+        <h2>Miért a Pallas Magániskola?</h2>
+        <p class="section-subtitle">
+          Nemcsak szabályokat tanítunk, hanem használható, élő nyelvtudást adunk,
+          amelyet azonnal beépíthetsz a mindennapjaidba.
+        </p>
+
+        <div class="why-grid">
+          <div class="why-card">
+            <p>
+              A <strong>Pallas Magániskola Betéti Társaság</strong> nyelvtanfolyamain
+              a gyakorlati kommunikáció áll a középpontban. Minden csoport előtt
+              szintfelmérést végzünk, hogy valóban hozzád illő tempóban és
+              társakkal tanulhass.
+            </p>
+            <div class="stats">
+              <div>
+                <span class="stat-number">6–10 fő</span>
+                <span class="text-accent">Ideális csoportlétszám</span><br />
+                több beszédlehetőség, személyes figyelem
+              </div>
+              <div>
+                <span class="stat-number">80%</span>
+                <span class="text-accent">Sikeres vizsga</span><br />
+                tanulóink túlnyomó többsége elsőre sikeres
+              </div>
+            </div>
+          </div>
+
+          <ul class="why-list">
+            <li class="why-item">
+              <div class="why-icon">✓</div>
+              <div>
+                <strong>Személyre szabott tanulási útvonal</strong><br />
+                Ingyenes szintfelmérés és tanácsadás alapján javaslunk csoportot
+                vagy egyéni órát.
+              </div>
+            </li>
+            <li class="why-item">
+              <div class="why-icon">✓</div>
+              <div>
+                <strong>Tapasztalt, barátságos tanárok</strong><br />
+                Nyelvtanárok, akik a való élet példáival, játékos
+                feladatokkal és rengeteg beszédgyakorlattal segítenek.
+              </div>
+            </li>
+            <li class="why-item">
+              <div class="why-icon">✓</div>
+              <div>
+                <strong>Rugalmas időbeosztás</strong><br />
+                Délelőtti, délutáni és esti időpontok, online részvételi
+                lehetőséggel.
+              </div>
+            </li>
+            <li class="why-item">
+              <div class="why-icon">✓</div>
+              <div>
+                <strong>Átlátható árak, rejtett költségek nélkül</strong><br />
+                Nincsenek meglepetések – a tanfolyamdíj tartalmazza az
+                online tananyagot és a próbavizsgákat is.
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="kapcsolat">
+      <div class="container">
+        <h2>Kapcsolat &amp; jelentkezés</h2>
+        <p class="section-subtitle">
+          Vedd fel velünk a kapcsolatot az alábbi elérhetőségeken. Írj e-mailt vagy üzenj Messengeren, és egyeztetünk a számodra megfelelő tanfolyamról és időpontról.
+        </p>
+
+        <div class="contact-grid">
+          <div class="contact-info">
+            <p>
+              <strong>Székhely / számlázási adatok</strong>
+            </p>
+            <ul class="contact-list">
+              <li>
+                <span>🏫</span>
+                <span>
+                  Név: <strong>Pallas Magániskola Bt.</strong><br />
+                  Cím: <strong>2335 Taksony, Széchenyi utca 71.</strong><br />
+                  Adószám: <strong>20174666-2-13</strong>
+                </span>
+              </li>
+            </ul>
+
+            <p style="margin-top:1rem;">
+              <strong>Személyes órák helyszíne</strong>
+            </p>
+            <ul class="contact-list">
+              <li>
+                <span>📍</span>
+                <span>
+                  Nyelvoktató Ház<br />
+                  <strong>2330 Dunaharaszti, Dózsa György út 61.</strong>
+                </span>
+              </li>
+            </ul>
+
+            <p style="margin-top:1rem;">
+              <strong>Elérhetőségek</strong>
+            </p>
+            <ul class="contact-list">
+              <li>
+                <span>✉️</span>
+                <span>
+                  E-mail: <strong><a href="mailto:arnotipeter@gmail.com">arnotipeter@gmail.com</a></strong>
+                </span>
+              </li>
+              <li>
+                <span>💬</span>
+                <span>
+                  Messenger: <strong>Arnoti Péter</strong>
+                </span>
+              </li>
+            </ul>
+
+            <span class="contact-badge">
+              Írj bátran – röviden írd meg a nyelvet, a szintedet és a célodat, és visszajelzünk a lehetőségekkel!
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          © <span id="year"></span> Pallas Magániskola Betéti Társaság. Minden jog fenntartva.
+        </div>
+        <div class="footer-links">
+          <a href="#tanfolyamok">Tanfolyamok</a>
+          <a href="#kapcsolat">Kapcsolat</a>
+          <a href="#">Adatkezelési tájékoztató</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Dynamikus év a láblécben
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
