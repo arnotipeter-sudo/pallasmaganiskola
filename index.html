@@ -434,7 +434,105 @@
     @media (max-width: 720px) {
       .nav-links { display: none; }
     }
-  </style>
+  
+    /* CHATBOX – Ingyenes online angol gyakorlás */
+    #chatbox-section {
+      padding: 2.7rem 0 0;
+    }
+
+    .chatbox-card {
+      margin-top: 1.2rem;
+      background: #ffffff;
+      border-radius: 1.1rem;
+      padding: 1.2rem 1.2rem 1.4rem;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+    }
+
+    .chatbox-description {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 0.9rem;
+    }
+
+    #chat-container {
+      background: #f9fafb;
+      border-radius: 0.9rem;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      padding: 0.8rem 0.9rem;
+      height: 360px;
+      overflow-y: auto;
+      margin-bottom: 0.8rem;
+      font-size: 0.9rem;
+    }
+
+    .chat-message {
+      margin: 6px 0;
+      padding: 6px 10px;
+      border-radius: 0.7rem;
+      max-width: 82%;
+      line-height: 1.4;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+
+    .chat-message.user {
+      margin-left: auto;
+      background: #d1e7dd;
+      text-align: right;
+    }
+
+    .chat-message.assistant {
+      margin-right: auto;
+      background: #e5e7eb;
+      text-align: left;
+    }
+
+    .chat-input-row {
+      display: flex;
+      gap: 0.6rem;
+      align-items: center;
+    }
+
+    #user-input {
+      flex: 1;
+      padding: 0.55rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.9);
+      font-size: 0.9rem;
+    }
+
+    #user-input:focus {
+      outline: none;
+      border-color: #0d9488;
+      box-shadow: 0 0 0 1px rgba(13, 148, 136, 0.32);
+    }
+
+    #send-btn {
+      padding: 0.55rem 1.2rem;
+      border-radius: 999px;
+      border: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: linear-gradient(135deg, #facc15, #f97316);
+      color: #052e16;
+      box-shadow: 0 10px 24px rgba(250, 204, 21, 0.32);
+      white-space: nowrap;
+    }
+
+    #send-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .chat-hint {
+      margin-top: 0.4rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+</style>
 </head>
 <body>
   <header>
@@ -562,6 +660,40 @@ A tanfolyam csak akkor indul, ha a teljes tanfolyami díj kiegyenlítésre kerü
         </div>
       </div>
     </section>
+
+    <!-- ONLINE CHATBOX – INGYENES GYAKORLÁS -->
+    <section id="chatbox-section">
+      <div class="container">
+        <h2>Ingyenes online angol társalgás gyakorlás</h2>
+        <p class="section-subtitle">
+          Itt egy mesterséges intelligencia alapú chatpartnerrel tudsz angolul gyakorolni. A szintje kb. B1–B2,
+          egyszerű, érthető angol mondatokban válaszol, és finoman javítja a hibákat.
+        </p>
+
+        <div class="chatbox-card">
+          <p class="chatbox-description">
+            Írj angolul (például: <em>Hello, I would like to practise speaking about my job.</em>),
+            és a chatpartner válaszol, kérdez, segít gyakorolni a társalgást.
+          </p>
+
+          <div id="chat-container"></div>
+
+          <div class="chat-input-row">
+            <input
+              type="text"
+              id="user-input"
+              placeholder="Írj ide angolul… (pl. Hello, how are you today?)"
+            />
+            <button id="send-btn">Küldés</button>
+          </div>
+
+          <div class="chat-hint">
+            Tipp: próbálj teljes mondatokban írni, mintha beszélgetnél egy tanárral. A chatpartner csak angolul válaszol.
+          </div>
+        </div>
+      </div>
+    </section>
+
 
     <!-- ABOUT / RÓLUNK + HOGYAN -->
     <section id="rolunk">
@@ -870,6 +1002,85 @@ A tanfolyam csak akkor indul, ha a teljes tanfolyami díj kiegyenlítésre kerü
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
+
+  
+  <!-- CHATBOX SCRIPT – /api/chat végpontot hív -->
+  <script>
+    (function () {
+      const chatContainer = document.getElementById("chat-container");
+      const userInput = document.getElementById("user-input");
+      const sendBtn = document.getElementById("send-btn");
+
+      if (!chatContainer || !userInput || !sendBtn) return;
+
+      const history = [];
+
+      function addMessage(role, text) {
+        const div = document.createElement("div");
+        div.classList.add("chat-message");
+        div.classList.add(role === "user" ? "user" : "assistant");
+        div.textContent = text;
+        chatContainer.appendChild(div);
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+      }
+
+      async function sendMessage() {
+        const text = userInput.value.trim();
+        if (!text) return;
+
+        addMessage("user", text);
+        history.push({ role: "user", content: text });
+
+        userInput.value = "";
+        userInput.disabled = true;
+        sendBtn.disabled = true;
+        const oldLabel = sendBtn.textContent;
+        sendBtn.textContent = "Válaszra várakozás…";
+
+        try {
+          const res = await fetch("/api/chat", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ history })
+          });
+
+          const data = await res.json();
+
+          if (res.ok) {
+            const reply = data.reply || "(Nincs válasz)";
+            addMessage("assistant", reply);
+            history.push({ role: "assistant", content: reply });
+          } else {
+            addMessage("assistant", "Hiba történt a szerveren. Próbáld meg később.");
+            console.error(data.error);
+          }
+        } catch (err) {
+          console.error(err);
+          addMessage("assistant", "Nem sikerült csatlakozni a szerverhez. Ellenőrizd, hogy fut-e a backend (/api/chat).");
+        } finally {
+          userInput.disabled = false;
+          sendBtn.disabled = false;
+          sendBtn.textContent = oldLabel;
+          userInput.focus();
+        }
+      }
+
+      sendBtn.addEventListener("click", sendMessage);
+      userInput.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" && !e.shiftKey) {
+          e.preventDefault();
+          sendMessage();
+        }
+      });
+
+      // Kezdő üzenet
+      addMessage(
+        "assistant",
+        "Hello! I am your English conversation partner. Tell me something about your day in English."
+      );
+    })();
+  </script>
+
 
   <!-- Chatbase Script -->
   <script>
