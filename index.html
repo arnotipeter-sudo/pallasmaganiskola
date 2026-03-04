@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nyelvtanulás - ahol végre beszélhetsz</title>
+  <meta name="description" content="Pallas Magániskola – Nyelvoktató Ház Dunaharasztin és Szigetszentmiklóson. Nyelvtanfolyamok, ahol a beszéd, a társalgás és a valódi kommunikáció áll a középpontban.">
+  <style>
+    :root {
+      --green-dark: #0f3d2e;
+      --green: #145c3d;
+      --green-light: #e5f3ea;
+      --yellow: #f5c84c;
+      --yellow-soft: #fff7cc;
+      --bg: #f4f4f0;
+      --text: #1f2933;
+      --muted: #6b7280;
+      --radius-lg: 1.4rem;
+      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.18);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #f6f9f4, #ececec);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    img { max-width: 100%; display: block; }
+
+    a { text-decoration: none; color: inherit; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(11, 36, 27, 0.95);
+      border-bottom: 1px solid rgba(248, 250, 252, 0.12);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.8rem 0;
+      gap: 1.5rem;
+      color: #f9fafb;
+    }
+
+    .logo-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .logo svg {
+      width: 54px;
+      height: 54px;
+      flex-shrink: 0;
+    }
+
+    .logo-text-main {
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      font-size: 1.05rem;
+    }
+
+    .logo-text-sub {
+      font-size: 0.78rem;
+      color: #fef9c3;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.7rem;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      color: #e5e7eb;
+      position: relative;
+      padding-bottom: 0.15rem;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #facc15, #f97316);
+      transition: width 0.2s ease;
+    }
+
+    .nav-links a:hover::after { width: 100%; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+      border-radius: 999px;
+      padding: 0.6rem 1.4rem;
+      border: none;
+      cursor: pointer;
+      font-size: 0.93rem;
+      font-weight: 600;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #facc15, #f97316);
+      color: #052e16;
+      box-shadow: 0 16px 40px rgba(250, 204, 21, 0.38);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 22px 52px rgba(250, 204, 21, 0.5);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid rgba(229, 231, 235, 0.6);
+      color: #e5e7eb;
+    }
+
+    .btn-outline:hover {
+      background: rgba(15, 118, 110, 0.85);
+      transform: translateY(-1px);
+    }
+
+    main { padding-bottom: 4rem; }
+
+    /* HERO */
+
+    .hero {
+      padding: 3.2rem 0 2.7rem;
+      background: radial-gradient(circle at 0% 0%, #facc15 0, #166534 42%, #052e16 85%);
+      color: #fefce8;
+    }
+
+    @media (min-width: 768px) {
+      .hero { padding: 4rem 0 3.4rem; }
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr);
+      gap: 2.2rem;
+      align-items: center;
+    }
+
+    @media (min-width: 900px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.9fr);
+      }
+    }
+
+    .hero-kicker {
+      font-size: 0.83rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #fef9c3;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-tagline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.3rem 0.55rem 0.3rem 0.3rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.4);
+      margin-bottom: 0.75rem;
+      font-size: 0.84rem;
+    }
+
+    .hero-tagline-badge {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: #facc15;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #052e16;
+      font-weight: 800;
+      font-size: 0.92rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 3.2vw + 1.4rem, 3.1rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 span.highlight { color: #facc15; }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      color: #e5e7eb;
+      max-width: 34rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      align-items: center;
+      margin-bottom: 1.1rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.4rem;
+      font-size: 0.85rem;
+      color: #e5e7eb;
+    }
+
+    .hero-meta-item strong {
+      display: block;
+      color: #fefce8;
+      font-size: 0.95rem;
+    }
+
+    .hero-side {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      align-items: flex-end;
+    }
+
+    .decor-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      justify-content: flex-end;
+    }
+
+    .decor-img {
+      width: 180px;
+      height: 140px;
+      border-radius: 0.85rem;
+      overflow: hidden;
+      border: 1px solid rgba(248, 250, 252, 0.3);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    }
+
+    .decor-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    section {
+      padding: 2.7rem 0 0;
+    }
+
+    section h2 {
+      font-size: 1.6rem;
+      margin-bottom: 0.3rem;
+      color: var(--green-dark);
+      letter-spacing: -0.01em;
+    }
+
+    .section-subtitle {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 1.7rem;
+    }
+
+    /* COURSES */
+
+    .courses-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1.4rem;
+    }
+
+    @media (min-width: 700px) {
+      .courses-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .course-card {
+      background: #ffffff;
+      border-radius: 1.1rem;
+      padding: 1.2rem 1.15rem;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: 0 10px 26px rgba(15, 23, 42, 0.06);
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      min-height: 190px;
+    }
+
+    .course-level {
+      font-size: 0.78rem;
+      padding: 0.16rem 0.6rem;
+      border-radius: 999px;
+      background: #e5f3ea;
+      color: #065f46;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .course-level span { font-size: 0.75rem; opacity: 0.9; }
+
+    .course-card h3 {
+      font-size: 1.05rem;
+      color: var(--green-dark);
+    }
+
+    .course-meta {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    /* ABOUT / RÓLUNK */
+
+    .why-card {
+      background: #fefce8;
+      border-radius: 1.1rem;
+      padding: 1.2rem 1.2rem;
+      border: 1px solid rgba(234, 179, 8, 0.6);
+      font-size: 0.95rem;
+      color: var(--muted);
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.04);
+    }
+
+    .subsection-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--green-dark);
+      margin-bottom: 0.4rem;
+      margin-top: 0.8rem;
+    }
+
+    .subsection-title:first-child { margin-top: 0; }
+
+    /* CONTACT */
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .contact-info {
+      font-size: 0.92rem;
+      color: var(--muted);
+      background: #ffffff;
+      border-radius: 1.1rem;
+      padding: 1.25rem 1.2rem 1.4rem;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+    }
+
+    .contact-info strong { color: var(--green-dark); }
+
+    .contact-list {
+      list-style: none;
+      margin-top: 0.6rem;
+      display: grid;
+      gap: 0.4rem;
+    }
+
+    .contact-list li {
+      display: flex;
+      gap: 0.5rem;
+      align-items: flex-start;
+    }
+
+    .contact-badge {
+      font-size: 0.78rem;
+      padding: 0.18rem 0.6rem;
+      border-radius: 999px;
+      background: #e5f3ea;
+      color: #065f46;
+      margin-top: 0.8rem;
+      display: inline-flex;
+    }
+
+    footer {
+      padding: 2.5rem 0 2.2rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+      background: #021b17;
+      margin-top: 3rem;
+    }
+
+    .footer-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(148, 163, 184, 0.6);
+      padding-top: 1.3rem;
+      margin-top: 0.2rem;
+      color: #e5e7eb;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-links a {
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      color: #e5e7eb;
+    }
+  
+    /* CHATBOX – Ingyenes online angol gyakorlás */
+    #chatbox-section {
+      padding: 2.7rem 0 0;
+    }
+
+    .chatbox-card {
+      margin-top: 1.2rem;
+      background: #ffffff;
+      border-radius: 1.1rem;
+      padding: 1.2rem 1.2rem 1.4rem;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+    }
+
+    .chatbox-description {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 0.9rem;
+    }
+
+    #chat-container {
+      background: #f9fafb;
+      border-radius: 0.9rem;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      padding: 0.8rem 0.9rem;
+      height: 360px;
+      overflow-y: auto;
+      margin-bottom: 0.8rem;
+      font-size: 0.9rem;
+    }
+
+    .chat-message {
+      margin: 6px 0;
+      padding: 6px 10px;
+      border-radius: 0.7rem;
+      max-width: 82%;
+      line-height: 1.4;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+
+    .chat-message.user {
+      margin-left: auto;
+      background: #d1e7dd;
+      text-align: right;
+    }
+
+    .chat-message.assistant {
+      margin-right: auto;
+      background: #e5e7eb;
+      text-align: left;
+    }
+
+    .chat-input-row {
+      display: flex;
+      gap: 0.6rem;
+      align-items: center;
+    }
+
+    #user-input {
+      flex: 1;
+      padding: 0.55rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.9);
+      font-size: 0.9rem;
+    }
+
+    #user-input:focus {
+      outline: none;
+      border-color: #0d9488;
+      box-shadow: 0 0 0 1px rgba(13, 148, 136, 0.32);
+    }
+
+    #send-btn {
+      padding: 0.55rem 1.2rem;
+      border-radius: 999px;
+      border: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: linear-gradient(135deg, #facc15, #f97316);
+      color: #052e16;
+      box-shadow: 0 10px 24px rgba(250, 204, 21, 0.32);
+      white-space: nowrap;
+    }
+
+    #send-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .chat-hint {
+      margin-top: 0.4rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+</style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav class="nav">
+        <div class="logo-wrapper">
+          <div class="logo"><img src="Pallas_logo.png" alt="Pallas Magániskola logo" style="height:70px;"></div>
+          <div>
+            <div class="logo-text-main">Pallas Magániskola</div>
+            <div class="logo-text-sub">Ahol végre beszélhetsz</div>
+          </div>
+        </div>
+        <div class="nav-links">
+          <a href="#chatbemutato">Ingyenes Chat bemutatóóra</a>
+          <a href="#chatbox-section">Gyakorold az angolt most</a>
+          <a href="#vallalati">Vállalati képzések</a>
+          <a href="#tanfolyamok">Tanfolyamok</a>
+          <a href="#rolunk">Rólunk</a>
+          <a href="#modszer">Módszerünk</a>
+          <a href="#idopontfoglalas">Időpontfoglalás</a>
+          <a href="#kapcsolat">Kapcsolat</a>
+          <button class="btn btn-primary" onclick="document.getElementById('kapcsolat').scrollIntoView({behavior:'smooth'});">
+            Jelentkezem
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <div class="hero-kicker">Nyelvoktató Ház – Dunaharaszti és Szigetszentmiklós</div>
+            <div class="hero-tagline">
+              <div class="hero-tagline-badge">💬</div>
+              <span><strong>Az AI gyakorlásra való.</strong><br>Mi beszélő embert csinálunk belőled.</span>
+            </div>
+            <h1>
+              Nyelvtanulás - <span class="highlight">ahol végre beszélhetsz</span>
+            </h1>
+            <p class="hero-subtitle">
+Kiscsoportos és egyéni nyelvtanfolyamok 1998 óta.<br>
+Családias hangulatú Nyelvoktató Ház, ahol biztonságos környezetben gyakorolhatod a beszédet – akár személyesen, akár online.
+<br><br>
+<strong>AI vagy nyelviskola?</strong>
+<br><br>
+Az applikációk megtanítják a szavakat,<br>
+esetleg elmagyarázzák a nyelvtant.
+<br><br>
+<strong>Mi megtanítunk megszólalni akkor is, amikor számít.</strong>
+<br><br>
+Az AI kiváló gyakorlóeszköz.<br>
+Gyors visszajelzést ad, segít a szókincsben, javítja a kiejtést.
+<br><br>
+De a nyelv nem csak algoritmus – hanem reakció, dinamika, jelenlét.
+<br><br>
+<strong>Nálunk nem csak gyakorolsz.</strong><br>
+Mi nem csak gyakoroltatunk.<br>
+<strong>Mi beszélő embert csinálunk belőled.</strong>
+<br><br>
+Az óráinkon valódi helyzetekben szólalsz meg.<br>
+Vitatkozol. Érvelsz. Kérdezel. Reagálsz.
+<br><br>
+Nem egy appnak válaszolsz, hanem embereknek.
+<br><br>
+Megtanulod kezelni a váratlan kérdéseket, a félbeszakításokat, a humort és a feszültséget – mindazt, ami az igazi kommunikáció része.
+<br><br>
+<strong>Az AI felkészít.</strong><br>
+<strong>Mi megtanítunk megszólalni akkor is, amikor számít.</strong>
+<br><br>
+Ha nem csak „megérteni” szeretnél egy nyelvet, hanem használni is – magabiztosan, természetesen, élő helyzetekben –, akkor itt a helyed.
+<br><br>
+<strong>Az AI gyakorlásra való.</strong><br>
+<strong>Mi beszélő embert csinálunk belőled.</strong>
+
+</p>
+            <div class="hero-cta">
+              <button class="btn btn-primary" onclick="document.getElementById('kapcsolat').scrollIntoView({behavior:'smooth'});">
+                Jelentkezem beszédközpontú tanfolyamra
+              </button>
+              <button class="btn btn-outline" onclick="document.getElementById('tanfolyamok').scrollIntoView({behavior:'smooth'});">
+                Tanfolyamok áttekintése
+              </button>
+            </div>
+            <div class="hero-meta">
+              <div class="hero-meta-item">
+                <strong>1998 óta tanítunk</strong>
+                Pallas Magániskola, Nyelvoktató Ház Dunaharasztin – helyi gyökerekkel.
+              </div>
+              <div class="hero-meta-item">
+                <strong>Beszéd az első pillanattól</strong>
+                Páros és csoportos gyakorlatok, szerepjátékok, valódi helyzetek.
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-side">
+            <div class="decor-row">
+              <div class="decor-img"><img src="1645631108109.jpg" alt="Nyelvoktató Ház"></div>
+              <div class="decor-img"><img src="1645631108129.jpg" alt="Nyelvoktató Ház kert"></div>
+              <div class="decor-img"><img src="galeria2.jpg" alt="Nyelvoktató Ház galéria"></div>
+            </div>
+          </div>
+        
+        <div class="why-card" style="margin-top:1.4rem;">
+
+          <h3 style="font-size:1.3rem; color:#0f3d2e; margin-bottom:0.4rem;">
+            AusztriaStart
+          </h3>
+
+          <p style="font-weight:600; margin-bottom:0.2rem;">
+            Német alapok a vendéglátásban dolgozóknak
+          </p>
+
+          <p style="color:#6b7280; margin-bottom:1rem;">
+            Kezdő tanfolyam a sikeres ausztriai munkához
+          </p>
+
+          <div style="display:grid; grid-template-columns: minmax(0,1fr) minmax(0,1.4fr); gap:1.2rem; align-items:start;">
+
+            <div>
+              <p style="font-size:0.85rem; color:#6b7280; margin-bottom:0.3rem;">
+                A tanfolyamhoz tartozó munkafüzet:
+              </p>
+
+              <embed 
+                src="ausztriaborito.pdf"
+                type="application/pdf"
+                style="width:100%; height:220px; border-radius:0.6rem; border:1px solid rgba(148,163,184,0.4);"
+              >
+
+              <p style="font-size:0.8rem; margin-top:0.3rem;">
+                <a href="borító legújabb.pdf" target="_blank" style="text-decoration:underline;">
+                  PDF megnyitása teljes méretben
+                </a>
+              </p>
+            </div>
+
+            <div>
+              <div class="subsection-title">Kinek ajánlott?</div>
+              <ul style="margin-left:1rem; margin-bottom:0.8rem;">
+                <li>kezdőknek és kevés német nyelvtudással rendelkezőknek</li>
+                <li>főként konyhai kisegítésben dolgozóknak, de a vendéglátás más területein dolgozók is hasznát veszik</li>
+              </ul>
+
+              <div class="subsection-title">Mit tartalmaz?</div>
+              <ul style="margin-left:1rem; margin-bottom:0.8rem;">
+                <li>szószedet osztrák megfelelőkkel: konyhai eszközök, élelmiszerek, konyhai tevékenységek, higiénia és biztonság</li>
+                <li>valós munkahelyi kifejezések, utasítások, mintamondatok németül és magyarul</li>
+                <li>a munkavállalókban felmerülő kérdések mintamondatokkal</li>
+                <li>nyelvtani alapok: igeragozás, számok, mértékegységek, módbeli segédigék</li>
+                <li>állásinterjúra felkészítés, mintamondatokkal</li>
+              </ul>
+
+              <div class="subsection-title">Miért jó?</div>
+              <ul style="margin-left:1rem;">
+                <li>célirányos, komplex munkafüzet</li>
+                <li>logikusan felépített, gyakorlatközpontú tananyag</li>
+                <li>teljes egészében kiszótározott anyag</li>
+                <li>megoldókulcs az azonnali visszajelzéshez</li>
+              </ul>
+            </div>
+          </div>
+
+          <p style="margin-top:1rem; font-weight:600;">
+            Jelentkezés és információ:
+            <a href="mailto:pallasmaganiskola@gmail.com">pallasmaganiskola@gmail.com</a>
+          </p>
+        </div>
+</div>
+      </div>
+    </section>
+
+    <!-- COURSES / PRICES -->
+    <section id="tanfolyamok">
+      <div class="container">
+        <h2>Nyelvtanfolyamok – beszédközpontúan</h2>
+        <p class="section-subtitle">
+          Csoportos, kiscsoportos és egyéni tanfolyamok. A célunk, hogy magabiztosan tudj
+          <strong>társalogni</strong> – mindennapi helyzetekben, munkában vagy vizsgán.
+        </p>
+
+                <div class="courses-grid">
+          <article class="course-card">
+            <div class="course-level">
+              Chat Alone <span>egyéni</span>
+            </div>
+            <h3>Chat Alone – egyéni tanfolyam</h3>
+            <p class="course-meta">
+              Chat Alone - egyéni tanfolyam angol, német, francia, olasz, spanyol nyelven.<br><br>
+              angol: 10 óra 68.000 Ft   30 óra 202.500 Ft<br>
+              más nyelvek:  10 óra 70.000 Ft   30 óra 208.000 Ft<br>
+              Indulás bármikor, időbeosztás rugalmas.<br>
+Az egyéni tanfolyamnál az időbeosztás rugalmas. A tanár a hallgató igényeihez alkalmazkodik. Az órákat Dunaharasztin, Szigetszentmiklóson vagy online tartjuk. A tanfolyam csak akkor indul, ha a teljes tanfolyami díj kiegyenlítésre került.<br>
+Az órák általában heti egy vagy két alkalommal lesznek, egy alkalommal két tanórát tartunk. A tanórák 45 percesek.<br>
+Óralemondásra van lehetőség betegség vagy egyéb elfoglaltság esetén.<br>
+Kérjük, hogy az órákat minimum az óra időpontja előtt 24 órával mondd le, különben azt megtartottnak vesszük.
+            </p>
+          </article>
+
+          <article class="course-card">
+            <div class="course-level">
+              Chat Team <span>csoportos</span>
+            </div>
+            <h3>Chat Team – csoportos beszédóra</h3>
+            <p class="course-meta">
+              Chat Team - csoportos beszédóra, min 2, max 4 fő.<br><br>
+              angol: 30 óra 97.500 Ft    más nyelvek: 125.000 Ft<br>
+Ennél a csoportos tanfolyamtipusnál konkrét, előre meghatározott időpontban tartjuk az órákat. Az órák általában heti egy vagy két alkalommal lesznek, egy alkalommal két tanórát tartunk. A tanórák 45 percesek.<br>
+Óralemondásra nincs lehetőség, hiszen a csoport többi tagjai is azért jelentkeztek, hogy haladjanak a nyelvtanulással. Természetesen az ünnepek alatt, illetve a nyári vakációk idején lehetőség van egy hosszabb szünetre is.<br>
+A tanfolyam csak akkor indul, ha a teljes tanfolyami díj kiegyenlítésre került.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- INGYENES CHAT BEMUTATÓÓRA -->
+    <section id="chatbemutato">
+      <div class="container">
+        <h2>Ingyenes Chat bemutatóóra</h2>
+        <p class="section-subtitle">
+          Ingyenes bemutatóórán vehetsz részt a Dunaharaszti Nyelvoktató Házban (Dózsa György 61.)<br>
+          2026. január 20-án 17.00 órakor.<br>
+          Megismerheted módszerünket, gyakorolhatod az angolt. Olyanok jelentkezését várjuk, akik kicsit már beszélik a nyelvet (A2 szint felett).<br>
+          A részvétel ingyenes, de regisztrációhoz kötött.<br>
+          Regisztrálni a <strong>pallasmaganiskola@gmail.com</strong> címen lehet.<br>
+          Kérlek, ha mégsem tudsz eljönni, időben jelezd felénk. Köszönjük.
+        </p>
+      </div>
+    </section>
+
+    <!-- VÁLLALATI KÉPZÉSEK -->
+    <section id="vallalati">
+      <div class="container">
+        <h2>Vállalati képzések</h2>
+        <p class="section-subtitle">
+          Kérjen ajánlatot kihelyezett céges tanfolyamokra.
+        </p>
+
+        <div class="why-card">
+          <p>
+            A Pallas Magániskola 25 éve dolgozik partnereinél csoportos és egyéni nyelvtanfolyamok biztosításában.
+          </p>
+          <p style="margin-top:0.6rem;">
+            Írjon és részletes ajánlatot készítünk cégének.
+            <a href="mailto:pallasmaganiskola@gmail.com"><strong>pallasmaganiskola@gmail.com</strong></a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ONLINE CHATBOX – INGYENES GYAKORLÁS -->
+    <section id="chatbox-section">
+      <div class="container">
+        <h2>Ingyenes online angol társalgás gyakorlás</h2>
+        <p class="section-subtitle">
+          Itt egy mesterséges intelligencia alapú chatpartnerrel tudsz angolul gyakorolni. A szintje kb. B1–B2,
+          egyszerű, érthető angol mondatokban válaszol, és finoman javítja a hibákat.
+        </p>
+
+        <div class="chatbox-card">
+          <p class="chatbox-description">
+            Írj angolul (például: <em>Hello, I would like to practise speaking about my job.</em>),
+            és a chatpartner válaszol, kérdez, segít gyakorolni a társalgást.
+          </p>
+
+          <div id="chat-container"></div>
+
+          <div class="chat-input-row">
+            <input
+              type="text"
+              id="user-input"
+              placeholder="Írj ide angolul… (pl. Hello, how are you today?)"
+            />
+            <button id="send-btn">Küldés</button>
+          </div>
+
+          <div class="chat-hint">
+            Tipp: próbálj teljes mondatokban írni, mintha beszélgetnél egy tanárral. A chatpartner csak angolul válaszol.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT / RÓLUNK + HOGYAN -->
+    <section id="rolunk">
+      <img src="Pallas_logo.png" alt="Pallas Magániskola logo" style="height:120px; margin:0 auto 20px; display:block;">
+      <div class="container">
+        <h2>Rólunk – Pallas Magániskola</h2>
+        <p class="section-subtitle">
+          Több mint 25 éve fogadjuk a nyelvtanulókat Dunaharasztin és környékén. Helyi gyökerek,
+          családias hangulat, szakmailag felkészült, beszédközpontú tanárok.
+        </p>
+
+        <div class="why-card">
+          <div class="subsection-title">Kik vagyunk?</div>
+          <p>
+            Iskolánk, a <strong>Pallas Magániskola Betéti Társaság</strong> 1996-ban alakult, majd 2004-ben nyitotta meg Nyelvoktató Házát Dunaharasztin.
+          </p>
+          <p style="margin-top:0.6rem;">
+            A Dunaharasztin ismerté vált Nyelvoktató Ház most is őrzi hagyományait és barátságos hangulatát a Baktay tér közelében. Óriási ezüstfenyő árnyékában áll a ház, a kertet illatos levendulamező borítja.
+          </p>
+          <p style="margin-top:0.6rem;">
+            Szigetszentmiklósi iskolánk a város szívében működik, a Gyári úti körforgalomnál.
+          </p>
+          <p style="margin-top:1rem; font-size:0.9rem; color:var(--muted);">
+            Üdvözlünk a Nyelvoktató Házban!<br />
+            <strong>Arnóti Péter igazgató és felesége</strong>
+          </p>
+
+          <div class="subsection-title" style="margin-top:1.1rem;">Hogyan tanulhatsz nálunk?</div>
+          <p>
+            <strong>Mindenki másként tanul.</strong> Van, aki csoportban érzi jól magát, másnak a magánóra,
+            az állandó tanári figyelem hozza meg a sikert. Mielőtt döntesz, érdemes szaktanácsot kérni tőlünk,
+            mert a helyes tanfolyamválasztás alapvetően meghatározza, milyen gyorsan éred el a kitűzött célodat.
+          </p>
+          <p style="margin-top:0.6rem;">
+            Amit mi adunk – módszer, tanár, tananyag – csak akkor ér valamit, ha <strong>Te is hozzáteszed
+            a szorgalmadat és lelkesedésedet</strong>.
+          </p>
+          <p style="margin-top:0.6rem;">
+            Ha nem szeretnéd feladni otthonod kényelmét, válaszd <strong>online oktatási lehetőségeinket</strong>.
+            Így kedvezőbb áron, utazás nélkül juthatsz használható nyelvtudáshoz.
+          </p>
+
+          <div class="subsection-title" style="margin-top:1.1rem;">Árak &amp; befektetés</div>
+          <p>
+            A cél eléréséhez szükséges órák száma adott – a szükséges idő rajtad múlik. 
+            Ha több időd van a tanulásra, gyorsabban érsz célba, ha kevesebb, lassabban – de kiszámítható úton haladunk.
+          </p>
+          <p style="margin-top:0.6rem;">
+            Árainkat úgy alakítottuk ki, hogy az általunk fontosnak tartott feltételeket – jó tanárok,
+            színvonalas tantermek, technikai háttér, modern tananyag – folyamatosan biztosítani tudjuk,
+            ugyanakkor az <strong>átlagos keresetűek számára is elérhetőek maradjunk</strong>.
+          </p>
+          <p style="margin-top:0.6rem;">
+            Lehet, hogy találsz olcsóbb nyelviskolát – de a nem megfelelően megválasztott iskolába
+            fektetett pénz és idő gyakran elvész, mert nem lesz belőle használható nyelvtudás.
+            Mi abban hiszünk, hogy a tartós tudás a sikeres élet egyik alapja.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- METHOD -->
+    <section id="modszer">
+      <div class="container">
+        <h2>Módszerünk – Társalogni, beszélni tanítunk</h2>
+        <p class="section-subtitle">
+          Nem hiszünk a néhány hét alatt csodát ígérő, „alvás közben tanulós” módszerekben. A mi óráinkon
+          a Te motivációd és a tanáraink tudása találkozik – élő beszédben.
+        </p>
+
+        <div class="why-card">
+          <ul style="list-style:none; padding-left:0; margin-bottom:1rem;">
+            <li style="display:flex; gap:0.55rem; margin-bottom:0.6rem;">
+              <div style="width:22px;height:22px;border-radius:999px;background:#bbf7d0;display:flex;align-items:center;justify-content:center;font-size:0.9rem;color:#14532d;">💬</div>
+              <div>
+                <strong>Beszéd az első perctől</strong><br />
+                Az órákon a társalgásé a főszerep. Páros és csoportos gyakorlatok, szerepjátékok,
+                hétköznapi szituációk – hogy a nyelvhasználat természetessé váljon.
+              </div>
+            </li>
+            <li style="display:flex; gap:0.55rem; margin-bottom:0.6rem;">
+              <div style="width:22px;height:22px;border-radius:999px;background:#bbf7d0;display:flex;align-items:center;justify-content:center;font-size:0.9rem;color:#14532d;">📚</div>
+              <div>
+                <strong>Rendszeres, jól felépített anyag</strong><br />
+                A cél eléréséhez szükséges órák száma adott – a tempó rajtad múlik. 
+                Ha több időd van, gyorsabban érsz célba, ha kevesebb, lassabban – de kiszámítható úton haladunk.
+              </div>
+            </li>
+            <li style="display:flex; gap:0.55rem; margin-bottom:0.6rem;">
+              <div style="width:22px;height:22px;border-radius:999px;background:#bbf7d0;display:flex;align-items:center;justify-content:center;font-size:0.9rem;color:#14532d;">🧑‍🏫</div>
+              <div>
+                <strong>Diplomás, gyakorlott tanárok</strong><br />
+                Tanáraink nemcsak nyelvtant tanítanak, hanem bátorítanak, javítanak, segítenek
+                túllépni a „félek megszólalni” érzésen.
+              </div>
+            </li>
+            <li style="display:flex; gap:0.55rem;">
+              <div style="width:22px;height:22px;border-radius:999px;background:#bbf7d0;display:flex;align-items:center;justify-content:center;font-size:0.9rem;color:#14532d;">🏡</div>
+              <div>
+                <strong>Családias, nyugodt környezet</strong><br />
+                A Nyelvoktató Ház kertje, kistermei és várótere azt a hangulatot adják, mintha barátokkal
+                beszélgetnél – csak itt közben tanulsz is.
+              </div>
+            </li>
+          </ul>
+
+          <div class="subsection-title">Mit jelent ez a gyakorlatban?</div>
+          <p>
+            A mi hitünk szerint <strong>a Te motivációd</strong> és 
+            <strong>a mi diplomás, tapasztalt tanáraink tudása</strong> együtt vezet a sikerhez.
+            Nem ígérünk csodát néhány hét alatt – helyette stabil, használható nyelvtudást építünk.
+          </p>
+          <p style="margin-top:0.6rem;">
+            Ha tényleg tudásra vágysz, akkor már készen állsz a sikerre – csak engedd,
+            hogy végigvezessünk azon az úton, amelynek a végén a kívánt nyelvtudás,
+            és ezen keresztül egy sikeresebb élet vár.
+          </p>
+
+          <div class="decor-row" style="margin-top:1rem;">
+            <div class="decor-img"><img src="1645631108109.jpg" alt="Tanterem"></div>
+            <div class="decor-img"><img src="1645631108129.jpg" alt="Tanterem részlet"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SIGNUP / PAYMENT -->
+    <section>
+      <div class="container">
+        <h2>Jelentkezés tanfolyamra</h2>
+        <p class="section-subtitle">
+          Az alábbi módon tudsz jelentkezni beszédközpontú tanfolyamainkra.
+        </p>
+        <div class="why-card">
+          <p>
+            Jelentkezz a <strong>pallasmaganiskola@gmail.com</strong> címen,<br>
+            kapsz egy számlát a befizetendő tandíjról,<br>
+            a Barion rendszerén keresztül hitelkártyával kifizetheted online<br>
+            vagy átutalhatod a <strong>Pallas Magániskola bt 11742180 20083155</strong> számra.<br>
+            A tandíj beérkezése után egyeztetünk, mikor indulhat a tanfolyamod.<br>
+            Amennyiben a tanfolyam valamilyen okból kifolyólag nem indul el, a befizetett összeget visszautaljuk.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOCATIONS -->
+    <section>
+      <div class="container">
+        <h2>Hol lesznek a tanfolyamok?</h2>
+        <div class="why-card">
+          <p>
+            Szigetszentmiklós, Bajcsy Zsilinszky utca 28. 2. emelet ( a korábbi Katedra nyelviskola épülete)<br>
+            Dunaharaszti Dózsa György 61. Nyelvoktató Ház<br>
+            Online
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+
+    <section id="idopontfoglalas">
+      <div class="container">
+        <h2>Időpontfoglalás</h2>
+        <p class="section-subtitle">
+          Szeretne személyes konzultációt? Egy beszélgetés során felméretné nyelvi szintjét?
+          Személyesen tudakozódna meg a tanfolyam részleteiről? Kérjen időpontot.
+          Kérjük, hogy amennyiben nem tud eljönni, mondja el időben a foglalt időpontot.
+        </p>
+
+        <div class="contact-info" style="margin-bottom: 1.2rem;">
+          <p>
+            Az alábbi naptárban hétfőnként 17:00–18:00 között
+            <strong>20 perces személyes találkozókra</strong> tud időpontot foglalni.
+          </p>
+          <div class="booking-wrapper" style="margin-top: 0.8rem; display:flex; justify-content:center;">
+            <iframe 
+              src="https://app.minup.io/embed/pallasmaganiskola?canStartPayment=true" 
+              style="width: 100%; max-width: 750px; height: 590px; border:0; border-radius: 1rem"
+              frameBorder="0">
+            </iframe>
+          </div>
+        </div>
+
+        <script type="text/javascript">
+          window.addEventListener("message", (event) => { 
+            if (event.origin !== "https://app.minup.io") return; 
+            const data = event.data; 
+            if (data.type === "redirect_to_payment") { 
+              window.location.href = data.url; 
+            } 
+          });
+        </script>
+      </div>
+    </section>
+
+    <section id="kapcsolat">
+      <img src="Pallas_logo.png" alt="Pallas Magániskola logo" style="height:100px; margin:0 auto 20px; display:block;">
+      <div class="container">
+        <h2>Kapcsolat</h2>
+        <p class="section-subtitle">
+          Ha kérdésed van, vagy nem vagy biztos benne, melyik tanfolyam illik hozzád, írj vagy keress minket bátran.
+        </p>
+
+        <div class="contact-grid">
+          <div class="contact-info">
+            <p>
+              <strong>Székhely / számlázási adatok</strong>
+            </p>
+            <ul class="contact-list">
+              <li>
+                <span>🏫</span>
+                <span>
+                  Név: <strong>Pallas Magániskola Bt.</strong><br />
+                  Ahol végre beszélhetsz<br />
+                  Cím: <strong>2335 Taksony, Széchenyi utca 71.</strong><br />
+                  Adószám: <strong>20174666-2-13</strong><br />
+                  Bankszámla: <strong>11742180 20083155</strong>
+                </span>
+              </li>
+            </ul>
+
+            <p style="margin-top:1rem;">
+              <strong>Személyes órák helyszíne</strong>
+            </p>
+            <ul class="contact-list">
+              <li>
+                <span>📍</span>
+                <span>
+                  Nyelvoktató Ház<br />
+                  <strong>2330 Dunaharaszti, Dózsa György út 61.</strong>
+                </span>
+              </li>
+              <li>
+                <span>📍</span>
+                <span>
+                  <strong>Szigetszentmiklós, Bajcsy Zsilinszky utca 28. 2. emelet</strong>
+                </span>
+              </li>
+            </ul>
+
+            <p style="margin-top:1rem;">
+              <strong>Elérhetőségek</strong>
+            </p>
+            <ul class="contact-list">
+              <li>
+                <span>✉️</span>
+                <span>
+                  E-mail: <strong><a href="mailto:pallasmaganiskola@gmail.com">pallasmaganiskola@gmail.com</a></strong>
+                </span>
+              </li>
+              <li>
+                <span>📞</span>
+                <span>
+                  tel: <strong>30 5611450</strong><br>
+                  ha nem tudjuk felvenni, másnap visszahívunk
+                </span>
+              </li>
+              <li>
+                <span>💬</span>
+                <span>
+                  Messenger: <strong>Arnoti Péter</strong>
+                </span>
+              </li>
+            </ul>
+
+            <span class="contact-badge">
+              Írj bátran – innen indul az első beszélgetés!
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  
+    <!-- GALLERY -->
+    <section id="galeria">
+      <div class="container">
+        <h2>Galéria</h2>
+        <div class="decor-row" style="margin-top:1rem;">
+          <div class="decor-img"><img src="galeria2.jpg" alt="Galéria kép 2"></div>
+          <div class="decor-img"><img src="galeria4.jpg" alt="Galéria kép 4"></div>
+          <div class="decor-img"><img src="galeria5.jpg" alt="Galéria kép 5"></div>
+        </div>
+      </div>
+    </section>
+
+<footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          © <span id="year"></span> Pallas Magániskola – Ahol végre beszélhetsz. Minden jog fenntartva.
+        </div>
+        <div class="footer-links">
+          <a href="#vallalati">Vállalati képzések</a>
+          <a href="#tanfolyamok">Tanfolyamok</a>
+          <a href="#rolunk">Rólunk</a>
+          <a href="#modszer">Módszerünk</a>
+          <a href="#kapcsolat">Kapcsolat</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+  
+  <!-- CHATBOX SCRIPT – pallas-chat-backend.onrender.com/api/chat -->
+  <script>
+    (function () {
+      const chatContainer = document.getElementById("chat-container");
+      const userInput = document.getElementById("user-input");
+      const sendBtn = document.getElementById("send-btn");
+
+      if (!chatContainer || !userInput || !sendBtn) return;
+
+      const history = [];
+
+      function addMessage(role, text) {
+        const div = document.createElement("div");
+        div.classList.add("chat-message");
+        div.classList.add(role === "user" ? "user" : "assistant");
+        div.textContent = text;
+        chatContainer.appendChild(div);
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+      }
+
+      async function sendMessage() {
+        const text = userInput.value.trim();
+        if (!text) return;
+
+        addMessage("user", text);
+        history.push({ role: "user", content: text });
+
+        userInput.value = "";
+        userInput.disabled = true;
+        sendBtn.disabled = true;
+        const oldLabel = sendBtn.textContent;
+        sendBtn.textContent = "Válaszra várakozás…";
+
+        try {
+          const res = await fetch("https://pallas-chat-backend.onrender.com/api/chat", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ history })
+          });
+
+          const data = await res.json();
+
+          if (res.ok) {
+            const reply = data.reply || "(Nincs válasz)";
+            addMessage("assistant", reply);
+            history.push({ role: "assistant", content: reply });
+          } else {
+            addMessage("assistant", "Hiba történt a szerveren. Próbáld meg később.");
+            console.error(data.error);
+          }
+        } catch (err) {
+          console.error(err);
+          addMessage("assistant", "Nem sikerült csatlakozni a szerverhez. Ellenőrizd, hogy fut-e a backend.");
+        } finally {
+          userInput.disabled = false;
+          sendBtn.disabled = false;
+          sendBtn.textContent = oldLabel;
+          userInput.focus();
+        }
+      }
+
+      sendBtn.addEventListener("click", sendMessage);
+      userInput.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" && !e.shiftKey) {
+          e.preventDefault();
+          sendMessage();
+        }
+      });
+
+      // Kezdő üzenet
+      addMessage(
+        "assistant",
+        "Hello! I am your English conversation partner. Tell me something about your day in English."
+      );
+    })();
+  </script>
+
+
+  <!-- Chatbase Script -->
+  <script>
+  (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="ZhoN7EGM8bUEwzdCJLWxn";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+  </script>
+<!-- Default Statcounter code for pallasmaganiskola http://pallasmaganiskola.hu
+-->
+<script type="text/javascript">
+var sc_project=13186650; 
+var sc_invisible=1; 
+var sc_security="bde96005"; 
+</script>
+<script type="text/javascript"
+src="https://www.statcounter.com/counter/counter.js" async></script>
+<noscript><div class="statcounter"><a title="látogató számláló"
+href="https://www.statcounter.hu/" target="_blank"><img class="statcounter"
+src="https://c.statcounter.com/13186650/0/bde96005/1/" alt="látogató
+számláló" referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+<!-- End of Statcounter Code -->
+</body>
+</html>
