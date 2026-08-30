@@ -894,6 +894,54 @@
       color: #000000 !important;
     }
 
+
+    /* Mobilos finomhangolás */
+    .hero-mobile-image { display: none; }
+
+    @media (max-width: 700px) {
+      header { position: relative; }
+      .nav { display: flex; gap: 0.65rem; }
+      .logo-wrapper { justify-content: center; margin-bottom: 0.2rem; }
+      .logo-text-main { font-size: 1rem; }
+      .logo-text-sub { font-size: 0.78rem; }
+      .nav-links {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: 100%;
+        gap: 0.35rem;
+      }
+      .nav-links a,
+      .nav-links .btn {
+        display: flex;
+        min-height: 44px;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 0.55rem 0.4rem;
+        font-size: 0.78rem;
+      }
+      .hero { padding: 2rem 0 2.3rem; }
+      .hero h1 { font-size: clamp(2rem, 10vw, 2.65rem); }
+      .hero-story { font-size: 0.98rem; line-height: 1.65; }
+      .hero-cta { display: grid; grid-template-columns: 1fr; }
+      .hero-cta .btn { width: 100%; min-height: 48px; }
+      .hero-meta { display: grid; gap: 0.8rem; }
+      .hero-mobile-image {
+        display: block;
+        width: min(100%, 430px);
+        margin: 1rem auto 1.25rem;
+      }
+      .hero-side { display: none; }
+      .booking-wrapper iframe { width: 100% !important; max-width: 100% !important; }
+      .contact-list li { overflow-wrap: anywhere; }
+    }
+
+    @media (max-width: 390px) {
+      .container { padding-left: 0.85rem; padding-right: 0.85rem; }
+      .nav-links { grid-template-columns: 1fr; }
+      .hero-story { padding: 1rem 0.85rem; }
+    }
+
 </style>
 </head>
 <body>
@@ -937,6 +985,9 @@
             <h1>
               Nyelvtanulás - <span class="highlight">ahol végre beszélhetsz</span>
             </h1>
+            <figure class="hero-feature-image hero-mobile-image">
+              <img src="pallas-felnott-nyelvtanulas.jpg" alt="Felnőttek beszédközpontú nyelvórán a Pallas Magániskolában" width="1000" height="1000" loading="eager" decoding="async">
+            </figure>
             <div class="hero-story">
               <p>
                 Kiscsoportos és egyéni nyelvtanfolyamok 1998 óta.<br>
