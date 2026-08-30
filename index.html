@@ -211,6 +211,113 @@
 
     .hero h1 span.highlight { color: #facc15; }
 
+    .hero-copy {
+      min-width: 0;
+    }
+
+    .hero-story {
+      max-width: 42rem;
+      display: grid;
+      gap: 1rem;
+      margin-bottom: 1.45rem;
+    }
+
+    .hero-intro {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: #f3f4f6;
+      padding-left: 1rem;
+      border-left: 4px solid #e6b84a;
+    }
+
+    .hero-question {
+      display: inline-flex;
+      width: fit-content;
+      padding: 0.42rem 0.8rem;
+      border-radius: 999px;
+      background: #e6b84a;
+      color: #123f32;
+      font-size: 1.08rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+    }
+
+    .hero-point {
+      padding: 1rem 1.05rem;
+      border: 1px solid rgba(255, 216, 117, 0.32);
+      border-radius: 1rem;
+      background: rgba(3, 43, 34, 0.52);
+      color: #edf4f0;
+      line-height: 1.7;
+    }
+
+    .hero-point strong {
+      color: #ffd875;
+      font-size: 1.04rem;
+    }
+
+    .hero-emphasis {
+      padding: 1rem 1.05rem;
+      border-radius: 1rem;
+      background: #fff3cf;
+      color: #123f32;
+      line-height: 1.65;
+      border-left: 5px solid #e6b84a;
+    }
+
+    .hero-emphasis strong {
+      color: #123f32;
+      font-size: 1.05rem;
+    }
+
+    .hero-closing {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.8rem;
+    }
+
+    .hero-closing-item {
+      padding: 0.9rem 1rem;
+      border-radius: 0.95rem;
+      background: rgba(255, 255, 255, 0.09);
+      border-top: 3px solid #e6b84a;
+      color: #f8fafc;
+      line-height: 1.55;
+    }
+
+    .hero-closing-item strong {
+      color: #ffd875;
+    }
+
+    .hero-feature-image {
+      width: 100%;
+      max-width: 420px;
+      margin-left: auto;
+      border-radius: 1.35rem;
+      border: 3px solid #e6b84a;
+      box-shadow: 0 24px 54px rgba(0, 0, 0, 0.36);
+      overflow: hidden;
+      background: #fff3cf;
+    }
+
+    .hero-feature-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    @media (max-width: 899px) {
+      .hero-feature-image {
+        max-width: 560px;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .hero-closing {
+        grid-template-columns: 1fr;
+      }
+    }
+
     .hero-subtitle {
       font-size: 1rem;
       color: #e5e7eb;
@@ -848,36 +955,52 @@
             <h1>
               Nyelvtanulás - <span class="highlight">ahol végre beszélhetsz</span>
             </h1>
-            <p class="hero-subtitle">
-Kiscsoportos és egyéni nyelvtanfolyamok 1998 óta.<br>
-Családias hangulatú Nyelvoktató Ház, ahol biztonságos környezetben gyakorolhatod a beszédet – akár személyesen, akár online.
-<br><br>
-<strong>AI vagy nyelviskola?</strong>
-<br><br>
-Az applikációk megtanítják a szavakat,<br>
-esetleg elmagyarázzák a nyelvtant.
-<br><br>
-<strong>Mi megtanítunk megszólalni akkor is, amikor számít.</strong>
-<br><br>
+            <div class="hero-story">
+              <p class="hero-intro">
+                Kiscsoportos és egyéni nyelvtanfolyamok 1998 óta.<br>
+                Családias hangulatú Nyelvoktató Ház, ahol biztonságos környezetben gyakorolhatod a beszédet – akár személyesen, akár online.
+              </p>
 
-Mi nem csak gyakoroltatunk.<br>
-<strong>Mi beszélő embert csinálunk belőled.</strong>
-<br><br>
-Az óráinkon valódi helyzetekben szólalsz meg.<br>
-Vitatkozol. Érvelsz. Kérdezel. Reagálsz.
-<br><br>
-Nem egy appnak válaszolsz, hanem embereknek.
-<br><br>
-Megtanulod kezelni a váratlan kérdéseket, a félbeszakításokat, a humort és a feszültséget – mindazt, ami az igazi kommunikáció része.
-<br><br>
-<strong>Az AI felkészít.</strong><br>
-<strong>Mi megtanítunk megszólalni akkor is, amikor számít.</strong>
-<br><br>
+              <div class="hero-question"><strong>AI vagy nyelviskola?</strong></div>
 
-<strong>Az AI gyakorlásra való.</strong><br>
-<strong>Mi beszélő embert csinálunk belőled.</strong>
+              <div class="hero-point">
+                Az applikációk megtanítják a szavakat,<br>
+                esetleg elmagyarázzák a nyelvtant.
+              </div>
 
-</p>
+              <div class="hero-emphasis">
+                <strong>Mi megtanítunk megszólalni akkor is, amikor számít.</strong>
+              </div>
+
+              <div class="hero-point">
+                Mi nem csak gyakoroltatunk.<br>
+                <strong>Mi beszélő embert csinálunk belőled.</strong>
+              </div>
+
+              <div class="hero-point">
+                Az óráinkon valódi helyzetekben szólalsz meg.<br>
+                Vitatkozol. Érvelsz. Kérdezel. Reagálsz.
+              </div>
+
+              <div class="hero-point">
+                Nem egy appnak válaszolsz, hanem embereknek.
+              </div>
+
+              <div class="hero-point">
+                Megtanulod kezelni a váratlan kérdéseket, a félbeszakításokat, a humort és a feszültséget – mindazt, ami az igazi kommunikáció része.
+              </div>
+
+              <div class="hero-closing">
+                <div class="hero-closing-item">
+                  <strong>Az AI felkészít.</strong><br>
+                  <strong>Mi megtanítunk megszólalni akkor is, amikor számít.</strong>
+                </div>
+                <div class="hero-closing-item">
+                  <strong>Az AI gyakorlásra való.</strong><br>
+                  <strong>Mi beszélő embert csinálunk belőled.</strong>
+                </div>
+              </div>
+            </div>
             <div class="hero-cta">
               <button class="btn btn-primary" onclick="document.getElementById('kapcsolat').scrollIntoView({behavior:'smooth'});">
                 Jelentkezem beszédközpontú tanfolyamra
@@ -894,11 +1017,18 @@ Megtanulod kezelni a váratlan kérdéseket, a félbeszakításokat, a humort é
               <div class="hero-meta-item">
                 <strong>Beszéd az első pillanattól</strong>
                 Páros és csoportos gyakorlatok, szerepjátékok, valódi helyzetek.
-             
+              </div>
+            </div>
+          </div>
 
-          
-        
-     
+          <div class="hero-side">
+            <figure class="hero-feature-image">
+              <img src="pallas-felnott-nyelvtanulas.png" alt="Felnőttek beszédközpontú nyelvórán a Pallas Magániskolában">
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- COURSES / PRICES -->
     <section id="tanfolyamok">
