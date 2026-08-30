@@ -820,7 +820,6 @@
         </div>
         <div class="nav-links">
           
-          <a href="#chatbox-section">Gyakorold az angolt most</a>
           <a href="#vallalati">Vállalati képzések</a>
           <a href="#tanfolyamok">Tanfolyamok</a>
           <a href="#rolunk">Rólunk</a>
@@ -970,38 +969,6 @@ A tanfolyam csak akkor indul, ha a teljes tanfolyami díj kiegyenlítésre kerü
       </div>
     </section>
 
-    <!-- ONLINE CHATBOX – INGYENES GYAKORLÁS -->
-    <section id="chatbox-section">
-      <div class="container">
-        <h2>Ingyenes online angol társalgás gyakorlás</h2>
-        <p class="section-subtitle">
-          Itt egy mesterséges intelligencia alapú chatpartnerrel tudsz angolul gyakorolni. A szintje kb. B1–B2,
-          egyszerű, érthető angol mondatokban válaszol, és finoman javítja a hibákat.
-        </p>
-
-        <div class="chatbox-card">
-          <p class="chatbox-description">
-            Írj angolul (például: <em>Hello, I would like to practise speaking about my job.</em>),
-            és a chatpartner válaszol, kérdez, segít gyakorolni a társalgást.
-          </p>
-
-          <div id="chat-container"></div>
-
-          <div class="chat-input-row">
-            <input
-              type="text"
-              id="user-input"
-              placeholder="Írj ide angolul… (pl. Hello, how are you today?)"
-            />
-            <button id="send-btn">Küldés</button>
-          </div>
-
-          <div class="chat-hint">
-            Tipp: próbálj teljes mondatokban írni, mintha beszélgetnél egy tanárral. A chatpartner csak angolul válaszol.
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- ABOUT / RÓLUNK + HOGYAN -->
     <section id="rolunk">
@@ -1312,82 +1279,6 @@ A tanfolyam csak akkor indul, ha a teljes tanfolyami díj kiegyenlítésre kerü
   </script>
 
   
-  <!-- CHATBOX SCRIPT – pallas-chat-backend.onrender.com/api/chat -->
-  <script>
-    (function () {
-      const chatContainer = document.getElementById("chat-container");
-      const userInput = document.getElementById("user-input");
-      const sendBtn = document.getElementById("send-btn");
-
-      if (!chatContainer || !userInput || !sendBtn) return;
-
-      const history = [];
-
-      function addMessage(role, text) {
-        const div = document.createElement("div");
-        div.classList.add("chat-message");
-        div.classList.add(role === "user" ? "user" : "assistant");
-        div.textContent = text;
-        chatContainer.appendChild(div);
-        chatContainer.scrollTop = chatContainer.scrollHeight;
-      }
-
-      async function sendMessage() {
-        const text = userInput.value.trim();
-        if (!text) return;
-
-        addMessage("user", text);
-        history.push({ role: "user", content: text });
-
-        userInput.value = "";
-        userInput.disabled = true;
-        sendBtn.disabled = true;
-        const oldLabel = sendBtn.textContent;
-        sendBtn.textContent = "Válaszra várakozás…";
-
-        try {
-          const res = await fetch("https://pallas-chat-backend.onrender.com/api/chat", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ history })
-          });
-
-          const data = await res.json();
-
-          if (res.ok) {
-            const reply = data.reply || "(Nincs válasz)";
-            addMessage("assistant", reply);
-            history.push({ role: "assistant", content: reply });
-          } else {
-            addMessage("assistant", "Hiba történt a szerveren. Próbáld meg később.");
-            console.error(data.error);
-          }
-        } catch (err) {
-          console.error(err);
-          addMessage("assistant", "Nem sikerült csatlakozni a szerverhez. Ellenőrizd, hogy fut-e a backend.");
-        } finally {
-          userInput.disabled = false;
-          sendBtn.disabled = false;
-          sendBtn.textContent = oldLabel;
-          userInput.focus();
-        }
-      }
-
-      sendBtn.addEventListener("click", sendMessage);
-      userInput.addEventListener("keydown", function (e) {
-        if (e.key === "Enter" && !e.shiftKey) {
-          e.preventDefault();
-          sendMessage();
-        }
-      });
-
-      // Kezdő üzenet
-      addMessage(
-        "assistant",
-        "Hello! I am your English conversation partner. Tell me something about your day in English."
-      );
-    })();
-  </script>
 
 
   <!-- Chatbase Script -->
