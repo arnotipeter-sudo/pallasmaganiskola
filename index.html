@@ -165,11 +165,36 @@
     }
 
     .hero-kicker {
-      font-size: 0.83rem;
+      font-size: 1rem;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.1em;
       color: #fef9c3;
       margin-bottom: 0.8rem;
+    }
+
+    .hero-kicker-with-photo {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem;
+    }
+
+    .hero-kicker-with-photo img {
+      width: 112px;
+      height: 72px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 0.65rem;
+      border: 1px solid rgba(255, 216, 117, 0.55);
+      flex: 0 0 auto;
+    }
+
+    .hero-story { font-size: 1.12rem; }
+
+    @media (max-width: 600px) {
+      .hero-kicker-with-photo img { width: 88px; height: 62px; }
+      .hero-kicker { font-size: 0.9rem; }
+      .hero-story { font-size: 1.06rem; }
     }
 
     .hero-tagline {
@@ -1008,7 +1033,10 @@
       <div class="container">
         <div class="hero-grid">
           <div>
-            <div class="hero-kicker">Nyelvoktató Ház – Dunaharaszti</div>
+            <div class="hero-kicker hero-kicker-with-photo">
+              <span>Nyelvoktató Ház – Dunaharaszti</span>
+              <img src="galeria2.jpg" alt="A Nyelvoktató Ház kívülről" loading="eager">
+            </div>
             <div class="hero-tagline">
               <div class="hero-tagline-badge">💬</div>
               <span><strong>Az AI gyakorlásra való.</strong><br>Mi beszélő embert csinálunk belőled.</span>
