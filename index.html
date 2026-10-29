@@ -159,15 +159,9 @@
 
     .hero-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.3fr);
+      grid-template-columns: minmax(0, 1fr);
       gap: 2.2rem;
-      align-items: center;
-    }
-
-    @media (min-width: 900px) {
-      .hero-grid {
-        grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.9fr);
-      }
+      align-items: start;
     }
 
     .hero-kicker {
@@ -216,7 +210,7 @@
     }
 
     .hero-story {
-      max-width: 42rem;
+      max-width: none;
       margin-bottom: 1.45rem;
       padding: 1.35rem 1.45rem;
       border-radius: 1.15rem;
@@ -235,6 +229,24 @@
 
     .hero-story p:last-child {
       margin-bottom: 0;
+    }
+
+    @media (min-width: 900px) {
+      .hero-story {
+        column-count: 2;
+        column-gap: 2.5rem;
+        column-rule: 1px solid rgba(255, 216, 117, 0.25);
+      }
+
+      .hero-story p,
+      .hero-story .hero-question,
+      .hero-story .hero-keyline {
+        break-inside: avoid;
+      }
+
+      .hero-story .hero-finale {
+        break-inside: avoid;
+      }
     }
 
     .hero-story .hero-question {
