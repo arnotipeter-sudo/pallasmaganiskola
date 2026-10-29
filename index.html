@@ -267,6 +267,22 @@
       color: #ffd875 !important;
     }
 
+    .hero-banner-photo {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      line-height: 0;
+      background: #123f32;
+    }
+
+    .hero-banner-photo img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-width: none;
+      object-fit: contain;
+    }
+
     .hero-feature-image {
       width: min(100%, 420px);
       aspect-ratio: 1 / 1;
@@ -985,9 +1001,6 @@
             <h1>
               Nyelvtanulás - <span class="highlight">ahol végre beszélhetsz</span>
             </h1>
-            <figure class="hero-feature-image hero-mobile-image">
-              <img src="pallas-felnott-nyelvtanulas.jpg" alt="Felnőttek beszédközpontú nyelvórán a Pallas Magániskolában" width="1000" height="1000" loading="eager" decoding="async">
-            </figure>
             <div class="hero-story">
               <p>
                 Kiscsoportos és egyéni nyelvtanfolyamok 1998 óta.<br>
@@ -1047,14 +1060,14 @@
             </div>
           </div>
 
-          <div class="hero-side">
-            <figure class="hero-feature-image">
-              <img src="pallas-felnott-nyelvtanulas.jpg" alt="Felnőttek beszédközpontú nyelvórán a Pallas Magániskolában" width="1000" height="1000" loading="eager" decoding="async">
-            </figure>
-          </div>
+          <div class="hero-side"></div>
         </div>
       </div>
     </section>
+
+    <figure class="hero-banner-photo">
+      <img src="pallas-vezetok.jpg" alt="Arnóti Anna és Arnóti Péter, a Pallas Magániskola nyelvtanárai" loading="eager" decoding="async">
+    </figure>
 
     <!-- COURSES / PRICES -->
     <section id="tanfolyamok">
