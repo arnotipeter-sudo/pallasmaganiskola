@@ -268,8 +268,11 @@
     }
 
     .hero-banner-photo {
-      width: 100%;
-      margin: 0;
+      width: 100vw;
+      max-width: 100vw;
+      position: relative;
+      left: 50%;
+      margin: 1.25rem 0 1.5rem -50vw;
       padding: 0;
       line-height: 0;
       background: #123f32;
@@ -1001,6 +1004,10 @@
             <h1>
               Nyelvtanulás - <span class="highlight">ahol végre beszélhetsz</span>
             </h1>
+
+            <figure class="hero-banner-photo">
+              <img src="pallas-vezetok.jpg" alt="Arnóti Anna és Arnóti Péter, a Pallas Magániskola nyelvtanárai" loading="eager" decoding="async">
+            </figure>
             <div class="hero-story">
               <p>
                 Kiscsoportos és egyéni nyelvtanfolyamok 1998 óta.<br>
@@ -1064,10 +1071,6 @@
         </div>
       </div>
     </section>
-
-    <figure class="hero-banner-photo">
-      <img src="pallas-vezetok.jpg" alt="Arnóti Anna és Arnóti Péter, a Pallas Magániskola nyelvtanárai" loading="eager" decoding="async">
-    </figure>
 
     <!-- COURSES / PRICES -->
     <section id="tanfolyamok">
